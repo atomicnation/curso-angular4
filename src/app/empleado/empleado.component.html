@@ -1,0 +1,79 @@
+<h3 style="color:blue">{{titulo}}</h3>
+<hr>
+
+<h3>Selector de Colores</h3>
+<button (click)="logColorSeleccionado()">MOSTRAR LOG</button>
+<input type="text" [(ngModel)]="color_seleccionado"/>
+
+<pre [style.border]="color_seleccionado == 'red' ? '5px solid red' : '1px solid green'"
+[ngClass]="{
+	fondoAzul: color_seleccionado == 'blue',
+	fondoVerde: color_seleccionado == 'green'
+}">
+	<strong>Color elegido:</strong>
+	{{color_seleccionado}}
+</pre>
+
+<br>
+<div [ngStyle]="{
+	'background': color_seleccionado,
+	'width': '200px',
+	'height': '200px'
+	}">
+</div>
+<br>
+
+<h3>Colores switch</h3>
+<ul [ngSwitch]="color_seleccionado">
+	<li *ngSwitchCase="'red'" [ngStyle]="{
+		'background':color_seleccionado,
+		'color':'white',
+		'padding': '20px'
+		}">
+		Es de color ROJO
+	</li>
+	<li *ngSwitchCase="'green'" [ngStyle]="{
+		'background':color_seleccionado,
+		'color':'white',
+		'padding': '20px'
+		}">
+		Es de color VERDE
+	</li>
+	<li *ngSwitchCase="'blue'" [ngStyle]="{
+		'background':color_seleccionado,
+		'color':'white',
+		'padding': '20px'
+		}">
+		Es de color AZUL
+	</li>
+	<li *ngSwitchDefault [ngStyle]="{
+		'background': 'black',
+		'color':'white',
+		'padding': '20px'
+		}">
+		No se ha definido un color!!!
+	</li>
+</ul>
+<hr>
+<h3>Empleado estrella:</h3>
+<ul>
+	<li>{{empleado.nombre}}</li>
+	<li>{{empleado.edad}}</li>
+	<li>{{empleado.cargo}}</li>
+	<li *ngIf="empleado.contratado">Está contratado</li>
+	<li *ngIf="!empleado.contratado">No está contratado</li>
+</ul>
+<hr>
+<h3>Lista de Empleados:</h3>
+<ul>
+	<li *ngFor="let empleado of trabajadores; let i = index">
+		Empleado {{i+1}}:
+		<ul>
+			<li>{{empleado.nombre}}</li>
+			<li>{{empleado.edad}}</li>
+			<li>{{empleado.cargo}}</li>
+			<li *ngIf="empleado.contratado">Está contratado</li>
+			<li *ngIf="!empleado.contratado">No está contratado</li>
+		</ul>
+	</li>
+</ul>

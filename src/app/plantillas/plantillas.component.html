@@ -1,0 +1,16 @@
+<h4>{{titulo}}</h4>
+
+<div *ngIf="administrador; else noAdmin">
+	<button (click)="cambiar(false)">Cambiar</button>
+	<strong style="background: yellow">
+		Eres el administrador de la WebApp
+	</strong>
+</div>
+
+<ng-template #noAdmin>	
+	<button (click)="cambiar(true)">Cambiar</button>
+	<strong style="background: red; color: white">
+		NO eres el administrador de la WebApp
+	</strong>
+</ng-template>
+
